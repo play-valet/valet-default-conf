@@ -1,6 +1,6 @@
 # valet-default-conf
 
-https://github.com/valet-org/valet
+https://github.com/play-valet/valet
 
 ```
 scaffold {
@@ -30,51 +30,41 @@ scaffold {
         form: ""
         view: ""
       }
-      options: ["CONTROLLER:USE_EITHERT"]
+      # options
+      #   "CONTROLLER:ASYNC":
+      #   "CONTROLLER:SYNC":
+      #   "CONTROLLER:EITHERT":
+      options: ["CONTROLLER:EITHERT"]
     }
   }
 
   # modules setting
   modules {
-    # how to define https://www.howto/~
-    dbmigration {
-      isUse: "YES"
-      library: "flyway"
-      path {
-        migration: "conf/db/migration/default"
+    required {
+      # how to define https://www.howto/~
+      dbmigration {
+        isUse: "YES"
+        library: "flyway"
+        path {
+          migration: "conf/db/migration/default"
+        }
       }
-    }
-    # how to define https://www.howto/~
-    slickcodegen {
-      isUse: "YES"
-      library: "default"
+      # how to define https://www.howto/~
+      slickcodegen {
+        isUse: "YES"
+        library: "default"
+      }
     }
 
     # how to define https://www.howto/~
     auth {
-      isUse: "YES"
+      isUse: "NO"
       library: "jp.t2v.lab.play2.auth"
       roleList: ["SuperAdmin:5", "Admin:8", "SuperUser:13", "User:21", "SuperGuest:34", "Guest:55"]
       table {
         accountTableName: "User"
         LoginIdColumnName: "user_auth_text"
         LoginPassColumnName: "user_auth_hash"
-      }
-    }
-
-    # how to define https://www.howto/~
-    errorLog {
-      isUse: "YES"
-      table {
-        tableName: "ErrorLog"
-      }
-    }
-
-    # how to define https://www.howto/~
-    auditLog {
-      isUse: "NO"
-      table {
-        tableName: ""
       }
     }
 
@@ -107,6 +97,10 @@ scaffold {
           admin: "git@github.com:twirl-scaffold-themes/tst-simple-admin.git"
         }
         account: "git@github.com:twirl-component-themes/tct-login.git"
+      }
+      SingleDtoBetweenViewAndController {
+        isUse: "YES"
+        name: "ResultDtos"
       }
     }
 

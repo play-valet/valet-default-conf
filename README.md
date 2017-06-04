@@ -15,25 +15,24 @@ scaffold {
     default.password: "test"
   }
 
-  # general setting
+  # directory.type:
+  #   "AG": generate Autogen-Dir-Model. ignore output-path-config.
+  #   "MVC": simple output according to output-path-config.
+  # options
+  #   "CONTROLLER:ASYNC":
+  #   "CONTROLLER:SYNC":
+  #   "CONTROLLER:EITHERT":
   general {
-    slick.path.tables: "app/models/autogen/tables/Tables.scala"
     output {
-      # directory.type:
-      #   "AG": generate Autogen-Dir-Model. ignore output-path-config.
-      #   "MVC": simple output according to output-path-config.
       directory.type: "AG"
       path {
+        slick.tables: "app/models/autogen/tables/Tables.scala"
         controller: ""
         dao: ""
         service: ""
         form: ""
         view: ""
       }
-      # options
-      #   "CONTROLLER:ASYNC":
-      #   "CONTROLLER:SYNC":
-      #   "CONTROLLER:EITHERT":
       options: ["CONTROLLER:EITHERT"]
     }
   }
@@ -41,15 +40,11 @@ scaffold {
   # modules setting
   modules {
     required {
-      # how to define https://www.howto/~
       dbmigration {
         isUse: "YES"
         library: "flyway"
-        path {
-          migration: "conf/db/migration/default"
-        }
+        path : "conf/db/migration/default"
       }
-      # how to define https://www.howto/~
       slickcodegen {
         isUse: "YES"
         library: "default"
@@ -88,19 +83,16 @@ scaffold {
       isUse: "YES"
       enableList: ["backend.admin"]
       source {
-        front {
-          blog: ""
-          corporate: "git@github.com:twirl-component-themes/tct-corporate.git"
-          statusErrors: ""
-        }
-        backend {
-          admin: "git@github.com:twirl-scaffold-themes/tst-simple-admin.git"
-        }
-        account: "git@github.com:twirl-component-themes/tct-login.git"
+        front.blog: ""
+        front.corporate: ""
+        backend.admin: "git@github.com:play-valet-theme/simple-admin.git"
+        account: ""
       }
-      SingleDtoBetweenViewAndController {
-        isUse: "YES"
-        name: "ResultDtos"
+      modules {
+        resultDto {
+          isUse: "YES"
+          name: "ResultDtos"
+        }
       }
     }
 

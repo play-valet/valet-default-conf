@@ -33,7 +33,7 @@ scaffold {
         form: ""
         view: ""
       }
-      options: ["CONTROLLER:EITHERT"]
+      options: ["CONTROLLER:ASYNC"]
     }
   }
 
@@ -85,7 +85,7 @@ scaffold {
       source {
         front.blog: ""
         front.corporate: ""
-        backend.admin: "git@github.com:play-valet-theme/simple-admin.git"
+        backend.admin: "git@github.com:play-valet-themes/simple-admin.git"
         account: ""
       }
       modules {
